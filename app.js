@@ -1,5 +1,6 @@
 import express from "express"
 import dotenv from "dotenv"
+import cors from "cors" // Import the cors package
 import { connectMainDB } from "./config/db.js"
 import storeSettingsRoutes from "./routes/store-settings.js"
 
@@ -10,7 +11,8 @@ const app = express()
 const PORT = process.env.PORT || 3000
 
 // Middleware
-app.use(express.json())
+app.use(cors()) // Use cors middleware to enable CORS for all routes
+app.use(express.json()) // For parsing application/json
 
 // Connect to the main database at application startup
 // This is crucial for the getTenantDb helper to find tenant mappings
